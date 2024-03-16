@@ -1,0 +1,98 @@
+Copyright 2022 Gheta Andrei-Cristian 312CA
+
+Initial am alocat atat pentru vectorul de matrice, cat si pentru cei care
+stocheaza numarul de linii si de coloane, dimensiunea de 4 (nr_alocate) by
+default pe care pe viitor o voi ajusta in functie de nevoi.
+Mai apoi, programul verifica ce litera a fost citita de la tastatura si
+indeplineste task-ul asignat acesteia.
+
+Pentru litera:
+
+<-L->: 
+
+Se verifica daca se poate incarca matricea, daca da, atunci se citesc
+valorile, iar in vectorii de linii si de coloane se pun indicii numarului de
+linii si de coloane pe pozitia k, daca nu, se returneaza -1.
+In caz ca se citesc mai multe matrice decat numarul de matrice pe care le avem
+alocate, in fiecare din cei 3 vectori realizam o realocare cu o dimensiune 
+dubla fata de cea precedenta (pentru eficienta). Daca o realocare a esuat,
+atunci se returneaza -1.
+Prin acest lucru ma refer ca realizez o programare defensiva pe care nu o voi 
+mai preciza si la subpunctele urmatoare. Pe scurt, in cazul esuarii unei
+actiuni se dezaloca tot).
+
+<-D->:
+
+Se verifica daca index-ul citit apartine intervalului nostru si se printeaza
+numarul de linii si de coloane de pe index-ul respectiv.
+
+<-P->:
+
+Se verifica daca index-ul citit apartine intervalului nostru si se printeaza
+matricea de pe index-ul respectiv.
+
+<-C->:
+
+Se verifica daca index-ul citit apartine intervalului nostru si se vor declara
+dinamic inca 2 vectori care vor contine indecsii liniilor/coloanelor pe care
+vrem sa le schimbam.
+In continuare, aloc dinamic o matrice auxiliara pe indexul de la finalul 
+vectorului de matrice cu dimensiunile cerute si cu elementele de pe 
+liniile/coloanele selectate. Odata creata cea auxiliara, dezaloc memoria 
+rezervata pentru matricea de pe index-ul cerut, iar apoi aloc acolo o matrice
+cu dimensiunile matricei auxiliare. Mut matricea auxiliara pe index-ul
+matricei initiale, iar apoi dezaloc memoria matricei auxiliare de pe locul
+sau initial (de la final). Astfel operatia este realizata in-place pe index-ul
+cerut.
+
+<-M->
+
+Se verifica daca index-ul citit apartine intervalului nostru si daca matricele
+pot fi inmultite.
+In continuare, realizam inmultirea matricei de pe primul index citit si celei
+de pe al doilea index citit, iar rezultatul il punem intr-o matrice alocata
+dinamic pe urmatoarea pozitie din vectorul de matrice care are ca dimensiuni
+numarul de linii ale primei matrice si numarul de coloane ale celei de-a doua 
+matrice.
+
+<-O->
+
+Se aloca dinamic un vector suma care retine sumele tuturor matricelor.
+Cu ajutorul acestuia parcurgem toate elementele din fiecare matrice si punem 
+suma fiecareia pe index-ul respectiv. 
+Odata ce am calculat suma fiecareia, vom sorta crescator in vectorul de
+matrice toti vectorii (matrice, linii, coloane, inclusiv suma).
+
+<-T->
+Se verifica daca index-ul citit apartine intervalului nostru.
+In continuare, incarcam la finalul vectorului de matrice o matrice auxiliara
+care are numarul de linii egale cu numarul de coloane al matricei pe care o 
+vrem transpusa si numarul de coloane egale cu numarul de linii al matricei pe 
+care o vrem transpusa. Dezalocam zona de memorie a matricei initiale, iar apoi
+copiem matricea auxiliara pe index-ul cerut. La final dezalocam si matricea
+auxiliara de pe index-ul de la final si astfel ramanem cu matricea transpusa
+in-place.
+
+<-R->
+
+Se verifica daca index-ul citit apartine intervalului nostru, daca puterea
+este pozitiva si daca matricea noastra este patratica.
+In continuare, se realizeaza operatia de ridicare la putere in timp logaritmic
+pe matricea de pe index-ul citit. Eu am ales sa implementez varianta
+iterativa in care daca puterea este impara, matricea finala se inmulteste cu
+cea auxiliara si, indiferent de paritatea sau imparitatea puterii, matricea
+auxiliara devine ea la puterea a 2-a. Dupa fiecare operatie puterea se imparte
+la 2.
+
+<-F->
+
+Se verifica daca index-ul citit apartine intervalului nostru.
+Eliminam matricea de pe index-ul cerut, iar apoi mutam matricele ce urmeaza
+cu o pozitie in stanga incepand de la (index + 1). Verificam, de asemenea, la
+final daca se poate face o realocare cu mai putine matrice daca au fost
+eliminate de ajuns de multe.
+
+<-Q->
+
+Se dezaloca toate resursele ocupate in timpul rularii programului si se termina
+programul.
